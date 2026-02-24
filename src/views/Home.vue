@@ -1,6 +1,4 @@
 <template>
-  <header class="hero">
-    <!-- ... existing code ... -->
   <div class="page-container">
     <main class="container">
       <h1>Hello, I’m Kurt</h1>
