@@ -69,9 +69,12 @@
 
 <script setup>
 const images = [
-  'https://thirdimpactanime.com/wp-content/uploads/2018/04/wotakoi.png',
-  'https://cdn.wallpapersafari.com/60/15/XkY4aA.jpg',
-  'https://wallpapercave.com/wp/wp9597089.jpg'
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlabRdbyaxtksjrtHxqUxxjb_I-bdDcSZzOw&s',
+  'https://images8.alphacoders.com/926/thumb-1920-926145.png',
+  'https://wallpapers.com/images/hd/ps4-anime-p5y7usqzrcuk05de.jpg'
+  'https://c4.wallpaperflare.com/wallpaper/832/841/125/anime-your-lie-in-april-kaori-miyazono-kousei-arima-wallpaper-preview.jpg'
+  'https://cdn.wallpapersafari.com/60/15/XkY4aA.jpg'
+  'https://picfiles.alphacoders.com/347/thumb-347940.jpg'
 ]
 </script>
 
