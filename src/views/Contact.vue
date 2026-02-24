@@ -1,3 +1,130 @@
+<template>
+  <div class="page-wrapper">
+    <!-- Back Button -->
+    <button class="back-btn" @click="$router.back()">
+      ← Back
+    </button>
+
+    <header class="hero">
+      <h1>Contact Me</h1>
+      <p>Leave a message in the guestbook or check out my social links.</p>
+    </header>
+
+    <main class="container">
+      
+      <!-- Social Media Section -->
+      <section class="card">
+        <h2>My Social Links</h2>
+        <div class="social-links">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Instagram</a>
+          <a href="#" class="social-btn">GitHub</a>
+        </div>
+      </section>
+
+      <!-- Guestbook Section -->
+      <section class="card">
+        <h2>Guestbook</h2>
+        
+        <!-- Input Form -->
+        <form @submit.prevent="submitMessage" class="guestbook-form">
+          <input 
+            v-model="name" 
+            type="text" 
+            placeholder="Your Name" 
+            required 
+            class="input-field"
+          />
+          <textarea 
+            v-model="message" 
+            placeholder="Your Message" 
+            required 
+            class="input-field"
+            rows="3"
+          ></textarea>
+          <button type="submit" :disabled="loading" class="submit-btn">
+            {{ loading ? 'Sending...' : 'Sign Guestbook' }}
+          </button>
+        </form>
+
+        <!-- Messages List (GET Request) -->
+        <div class="messages-list">
+          <h3>Recent Messages</h3>
+          <div v-if="loadingMessages" class="loading">Loading messages...</div>
+          <div v-else-if="messages.length === 0" class="empty">No messages yet. Be the first!</div>
+          
+          <div v-for="msg in messages" :key="msg.id" class="message-item">
+            <div class="msg-header">
+              <strong>{{ msg.name }}</strong>
+              <span class="msg-date">{{ formatDate(msg.created_at) }}</span>
+            </div>
+            <p>{{ msg.message }}</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { supabase } from '../supabase'
+
+const name = ref('')
+const message = ref('')
+const loading = ref(false)
+const loadingMessages = ref(true)
+const messages = ref([])
+
+// 1. GET: Fetch messages on load
+const fetchMessages = async () => {
+  loadingMessages.value = true
+  const { data, error } = await supabase
+    .from('guestbook')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(20)
+
+  if (error) {
+    console.error('Error fetching:', error)
+  } else {
+    messages.value = data
+  }
+  loadingMessages.value = false
+}
+
+// 2. POST: Submit new message
+const submitMessage = async () => {
+  loading.value = true
+  const { error } = await supabase
+    .from('guestbook')
+    .insert([
+      { 
+        name: name.value, 
+        message: message.value 
+      }
+    ])
+
+  if (error) {
+    alert('Error submitting message: ' + error.message)
+  } else {
+    alert('Message sent successfully!')
+    name.value = ''
+    message.value = ''
+    await fetchMessages()
+  }
+  loading.value = false
+}
+
+const formatDate = (dateStr) => {
+  return new Date(dateStr).toLocaleDateString() + ' ' + new Date(dateStr).toLocaleTimeString()
+}
+
+onMounted(() => {
+  fetchMessages()
+})
+</script>
+
 <style scoped>
 .page-wrapper {
   min-height: 100vh;
@@ -99,6 +226,12 @@ h2 { color: #59a9e6; margin-bottom: 1rem; }
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   color: #aaa;
+}
+
+.loading, .empty {
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  padding: 1rem;
 }
 
 .social-links { display: flex; gap: 1rem; flex-wrap: wrap; }
