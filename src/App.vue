@@ -3,7 +3,9 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
       <div class="nav-content">
-        <div class="logo">Kurt's Portfolio</div>
+        <div class="logo">
+          <router-link to="/">Kurt's Portfolio</router-link>
+        </div>
         <div class="links">
           <router-link to="/">Home</router-link>
           <router-link to="/about">About Me</router-link>
@@ -13,11 +15,9 @@
     </nav>
 
     <!-- Main Content -->
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
+    <div class="main-content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ body {
 
 /* Navbar Styles */
 .navbar {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   padding: 1rem 2rem;
   position: sticky;
@@ -61,10 +61,11 @@ body {
   align-items: center;
 }
 
-.logo {
+.logo a {
   font-weight: bold;
   font-size: 1.2rem;
   color: #59a9e6;
+  text-decoration: none;
 }
 
 .links {
@@ -84,15 +85,10 @@ body {
   color: #59a9e6;
 }
 
-/* Page Transition Animation */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+/* Main Content */
+.main-content {
+  flex: 1;
+  width: 100%;
 }
 
 /* Mobile Responsive */

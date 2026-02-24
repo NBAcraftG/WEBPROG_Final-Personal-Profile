@@ -4,34 +4,16 @@ import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
 
 const routes = [
-  { 
-    path: '/', 
-    name: 'Home', 
-    component: Home 
-  },
-  { 
-    path: '/about', 
-    name: 'About', 
-    component: About 
-  },
-  { 
-    path: '/contact', 
-    name: 'Contact', 
-    component: Contact 
-  },
-  // Add a catch-all redirect to home
-  { 
-    path: '/:pathMatch(.*)*', 
-    redirect: '/' 
-  }
+  { path: '/', name: 'Home', component: Home },
+  { path: '/about', name: 'About', component: About },
+  { path: '/contact', name: 'Contact', component: Contact },
+  { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 
 const router = createRouter({
-  // Use hash mode as a fallback if history mode causes issues
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    // Always scroll to top on navigation
+  scrollBehavior() {
     return { top: 0 }
   }
 })
