@@ -1,10 +1,4 @@
 <template>
-<div class="page-wrapper">
-  <!-- Add this button -->
-  <button class="back-btn" @click="$router.back()">
-    ← Back
-  </button>
-
   <header class="hero">
     <!-- ... existing code ... -->
   <div class="page-container">

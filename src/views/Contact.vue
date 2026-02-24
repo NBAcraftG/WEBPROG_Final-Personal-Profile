@@ -1,13 +1,8 @@
 <template>
 <div class="page-wrapper">
-  <!-- Add this button -->
   <button class="back-btn" @click="$router.back()">
     ← Back
   </button>
-
-  <header class="hero">
-    <!-- ... existing code ... -->
-  <div class="page-wrapper">
     <header class="hero">
       <h1>Contact Me</h1>
       <p>Leave a message in the guestbook or check out my social links.</p>

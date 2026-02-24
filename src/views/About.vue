@@ -4,11 +4,7 @@
   <button class="back-btn" @click="$router.back()">
     ← Back
   </button>
-
   <header class="hero">
-    <!-- ... existing code ... -->
-  <div class="page-wrapper">
-    <header class="hero">
       <img 
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWejGFY4Kdx4Kh9qJumGdCAWoTU14NtUwtsQ&s" 
         alt="Profile Picture" 
