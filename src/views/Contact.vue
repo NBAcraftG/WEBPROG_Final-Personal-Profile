@@ -16,9 +16,9 @@
       <section class="card">
         <h2>My Social Links</h2>
         <div class="social-links">
-          <a href="#" class="social-btn">Facebook</a>
-          <a href="#" class="social-btn">Instagram</a>
-          <a href="#" class="social-btn">GitHub</a>
+          <a href="mailto:kcbinas@student.apc.edu.ph" class="social-btn">Email</a>
+          <a href="https://www.linkedin.com/in/kurt-gabriel-bi%C3%B1as-b1203b352/" class="social-btn">LinkedIn</a>
+          <a href="https://github.com/NBAcraftG" class="social-btn">GitHub</a>
         </div>
       </section>
 
